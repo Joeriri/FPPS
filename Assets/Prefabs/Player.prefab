@@ -174,9 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85acc133a739cfa469fbd335022cc1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 0}
   offset: {x: 0.5, y: -0.5, z: 1}
   throwForce: 1000
+  grabDistance: 8
 --- !u!1 &3319792404760623953
 GameObject:
   m_ObjectHideFlags: 0

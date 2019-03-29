@@ -9,6 +9,7 @@ public class Ring : MonoBehaviour
     [SerializeField]
     private float points = 1f;
     public Material hitMaterial;
+    private bool activated = false;
 
     //Front and back plane triggers.
     public RingHitbox front;
@@ -20,8 +21,13 @@ public class Ring : MonoBehaviour
         {
             front.HIT = back.HIT = false;
 
-            score.AddPoints(points);
-            GetComponent<Renderer>().material = hitMaterial;
+            if (!activated)
+            {
+                score.AddPoints(points);
+                GetComponent<Renderer>().material = hitMaterial;
+                activated = true;
+            }
+            
         }
         else if (front.HIT || back.HIT) //If only one trigger was hit, wait for the other to be hit. If the other trigger didn't get hit the ball didn't go through, so set both to not hit.
         {

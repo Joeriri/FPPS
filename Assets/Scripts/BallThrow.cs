@@ -26,12 +26,11 @@ public class BallThrow : MonoBehaviour
         {
             if (!holdingBall)
             {
-                //Add to this: only pick up closest ball, or only the one the player is looking at.
                 RaycastHit hit;
-                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, grabDistance) == true)
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, grabDistance) == true) //Check for the object the player is looking at.
                 {
                     Ball tempBall = hit.collider.GetComponent<Ball>();
-                    if (tempBall != null)
+                    if (tempBall != null) //If the object is a ball (has a Ball script), then grab it.
                     {
                         ball = tempBall;
                         GrabBall();

@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool grounded = false;
     private bool wasGrounded = false;
 
-    public CharacterController characterController;
+    private CharacterController characterController;
     private new GameObject camera;
     protected Collider coll;
 
@@ -33,6 +33,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (transform.position.y < -10f)
+        {
+            GameManager.Instance.RestartLevel();
+        }
+
+
         //Get the keyboard/joystick input on two axes from -1 to 1 (digital)
         float vert = Input.GetAxis("Vertical");
         float hor = Input.GetAxis("Horizontal");

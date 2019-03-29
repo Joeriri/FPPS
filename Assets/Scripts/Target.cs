@@ -5,13 +5,15 @@ public class Target : MonoBehaviour
     public Score score;
     [SerializeField] private float points = 1f;
     public Material hitMaterial;
+    private bool activated = false;
     
     void OnTriggerEnter(Collider coll)
     {
-        if (coll.GetComponent<Ball>() != null)
+        if (coll.GetComponent<Ball>() != null && !activated) //If the collider is a Ball and target is not activated yet, add points, change mat and activate.
         {
             score.AddPoints(points);
             GetComponentInParent<Renderer>().material = hitMaterial;
+            activated = true;
         }
     }
 }
