@@ -11,43 +11,71 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Image blackScreen;
     [SerializeField] private Image damageScreen;
     private Player player;
+    private AudioManager am;
 
     private void Awake()
     {
         Instance = Instance == null ? this : Instance;
         player = FindObjectOfType<Player>();
+        am = FindObjectOfType<AudioManager>();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(FadeToClear());
     }
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.Q))
         {
-            DamageEffect(1f);
+            DamageEffect();
         }
     }
 
     public void GameOver()
     {
         gameOver = true;
+        StartCoroutine(FadeToBlack());
         Debug.Log("Game Over!");
+        am.Play("GameOver");
     }
 
-    public void DamageEffect(float duration)
+    public void DamageEffect()
     {
-        StartCoroutine(DamageEffectRoutine(duration));
+        StartCoroutine(DamageEffectRoutine());
+        am.Play("Player_damage");
     }
 
-
-    IEnumerator DamageEffectRoutine(float duration)
+    IEnumerator DamageEffectRoutine()
     {
-        float t = 0;
-        float step = 1f / duration;
-        while (t < 1)
+        for (float i = 0.0f; i < 1.0f * player.damageEffectDuration; i += Time.deltaTime)
         {
-            yield return new WaitForSeconds(Time.deltaTime);
-            t += Time.deltaTime;
-            damageScreen.color = Color.Lerp(Color.clear, player.damageColor, Mathf.Sin(t * 3f)); // t * 3f omdat radialen.
-            Debug.Log(t);
+            damageScreen.color = Color.Lerp(Color.clear, player.damageColor, Mathf.Sin(i * 3f / player.damageEffectDuration)); // t * 3f omdat radialen.
+            yield return null;
         }
+    }
+
+    IEnumerator FadeToBlack()
+    {
+        for (float i = 0f; i < 1f; i += Time.deltaTime)
+        {
+            blackScreen.color = Color.Lerp(Color.clear, Color.black, i);
+            yield return null;
+        }
+    }
+
+    IEnumerator FadeToClear()
+    {
+        for (float i = 0f; i < 1f; i += Time.deltaTime)
+        {
+            blackScreen.color = Color.Lerp(Color.black, Color.clear, i);
+            yield return null;
+        }
+    }
+
+    public void PlaySound(string name)
+    {
+        am.Play(name);
     }
 }

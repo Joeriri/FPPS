@@ -11,11 +11,13 @@ public class Ring : MonoBehaviour
     private Score score;
     [SerializeField] private float points = 1f;
     private HoopManager hoopManager;
+    private AudioSource scoreSound;
     
     private void Awake()
     {
         score = GameManager.Instance.GetComponent<Score>();
         hoopManager = FindObjectOfType<HoopManager>();
+        scoreSound = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -25,28 +27,26 @@ public class Ring : MonoBehaviour
             if (front.passenger == back.passenger) // Controleer of dat hetzelfde object was,
             {
                 Ball ball = front.passenger.GetComponent<Ball>(); // Controleer of het een Ball was.
-                if (ball != null && !ball.deadly)
+                if (ball != null && !ball.deadly && !activated)
                 {
-                    // Deactiveer back en front.
-                    DisableRingHitboxes();
-
                     // Maak de bal dodelijk.
                     ball.BecomeDeadly();
 
-                    // Geef punten en vernietig de Ring. 
-                    if (!activated)
-                    {
-                        score.AddPoints(points);
-                        activated = true;
-                        StartCoroutine(DestroyRing());
-                    }
+                    // Geef punten en vernietig de Ring.
+                    score.AddPoints(points);
+                    activated = true;
+                    StartCoroutine(DestroyRing());
+                    scoreSound.Play();
                 }
-            }  
+            }
+
+            // Deactiveer back en front.
+            DisableRingHitboxes();
         }
         else if (front.HIT || back.HIT) // If only one trigger was hit, wait for the other to be hit. If the other trigger didn't get hit the ball didn't go through, so set both to not hit.
         {
             StartCoroutine(WaitForDisable());
-        }
+        }  
     }
 
     private IEnumerator WaitForDisable ()
@@ -60,6 +60,8 @@ public class Ring : MonoBehaviour
         front.HIT = back.HIT = false;
         front.passenger = back.passenger = null;
     }
+
+
 
     private IEnumerator DestroyRing()
     {
