@@ -206,8 +206,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.444
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -318,7 +318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a84ffad4abbeb47874a4e97b000b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 3
+  damageEffectDuration: 0.4
+  damageColor: {r: 1, g: 0.14509805, b: 0.14509805, a: 0.39215687}
+  damageSound: {fileID: 8300000, guid: 9b00a72d6d8be2d48805cd5328e969a1, type: 3}
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,19 +3,39 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    public float score = 0f;
-    [SerializeField] private Text scoreText;
-    [SerializeField] private Text scoreTextBG;
+    [HideInInspector] public int score;
+    [HideInInspector] public int highScore;
+    private LevelUI levelUI;
+
+    private void Awake()
+    {
+        levelUI = FindObjectOfType<LevelUI>();
+    }
 
     void Start()
     {
-        score = 0f;
+        score = 0;
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
+        levelUI.UpdateScoreUI(score.ToString());
+        levelUI.UpdateHighScoreUI("HI: " + highScore.ToString());
     }
 
-    public void AddPoints(float amount)
+    public void AddPoints(int amount)
     {
         score += amount;
-        scoreText.text = score.ToString();
-        scoreTextBG.text = scoreText.text;
+        PlayerPrefs.SetInt("Score", score);
+        levelUI.UpdateScoreUI(score.ToString());
+
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("HighScore", highScore);
+            levelUI.UpdateHighScoreUI("HI: " + highScore.ToString());
+        }
     }
+
+    //public void UpdateHealthUI(float health) // DEZE WORDT VANAD DE PLAYER AANGEROEPEN
+    //{
+    //    levelUI.UpdateHealthUI("HP: " + health.ToString());
+    //}
 }

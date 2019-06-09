@@ -3,7 +3,7 @@
 public class Target : MonoBehaviour
 {
     public Score score;
-    [SerializeField] private float points = 1f;
+    [SerializeField] private int points = 1;
     public Material hitMaterial;
     private bool activated = false;
     

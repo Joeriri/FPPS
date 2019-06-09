@@ -9,13 +9,13 @@ public class Ring : MonoBehaviour
     [SerializeField] private RingHitbox back;
     private bool activated = false;
     private Score score;
-    [SerializeField] private float points = 1f;
+    [SerializeField] private int points = 1;
     private HoopManager hoopManager;
     private AudioSource scoreSound;
     
     private void Awake()
     {
-        score = GameManager.Instance.GetComponent<Score>();
+        score = FindObjectOfType<Score>();
         hoopManager = FindObjectOfType<HoopManager>();
         scoreSound = GetComponent<AudioSource>();
     }
