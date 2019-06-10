@@ -28,11 +28,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            player.Damage(1f);
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             QuitGame();

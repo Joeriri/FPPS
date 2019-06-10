@@ -124,7 +124,6 @@ MonoBehaviour:
   healthTextBG: {fileID: 4771143374915536499}
   highScoreText: {fileID: 4771143374494395927}
   highScoreTextBG: {fileID: 4771143374529544305}
-  damageColor: {r: 1, g: 0.14509805, b: 0.14509805, a: 0.39215687}
 --- !u!1 &4771143373455921027
 GameObject:
   m_ObjectHideFlags: 0

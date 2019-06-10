@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoop: {fileID: 1176309293674665471, guid: 91da5842bd3bb814282045ac99f47dc0, type: 3}
-  size: {x: 20, y: 5, z: 20}
+  size: {x: 25, y: 5, z: 25}

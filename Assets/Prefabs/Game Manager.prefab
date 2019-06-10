@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOver: 0
-  blackScreen: {fileID: 0}
-  damageScreen: {fileID: 0}
 --- !u!114 &3493971609532978534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,9 +59,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   highScore: 0
-  scoreText: {fileID: 0}
-  scoreTextBG: {fileID: 0}
-  healthText: {fileID: 0}
-  healthTextBG: {fileID: 0}
-  highScoreText: {fileID: 0}
-  highScoreTextBG: {fileID: 0}
