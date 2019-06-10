@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
         {
             player.Damage(1f);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitGame();
+        }
     }
 
     public void GameOver()
@@ -50,5 +55,12 @@ public class GameManager : MonoBehaviour
     public void PlaySound(string name)
     {
         am.Play(name);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        PlayerPrefs.DeleteAll();
+        Debug.Log("Game Quit!");
     }
 }

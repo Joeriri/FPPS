@@ -18,9 +18,7 @@ public class End : MonoBehaviour
 
     public void Quit()
     {
-        Application.Quit();
-        PlayerPrefs.DeleteAll();
-        Debug.Log("Game Quit!");
+        GameManager.Instance.QuitGame();
     }
 
     public void Restart()
