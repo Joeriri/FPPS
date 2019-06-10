@@ -14,7 +14,12 @@ public class LevelUI : MonoBehaviour
     [SerializeField] private Text highScoreText;
     [SerializeField] private Text highScoreTextBG;
 
-    [SerializeField] private Color damageColor = new Color(255, 37, 37, 100);
+    private Player player;
+
+    private void Awake()
+    {
+        player = FindObjectOfType<Player>();
+    }
 
     public void FadeToBlack()
     {
@@ -53,11 +58,12 @@ public class LevelUI : MonoBehaviour
 
     IEnumerator DamageEffectRoutine()
     {
-        for (float i = 0.0f; i < 1.0f * 0.2f; i += Time.deltaTime)
+        for (float i = 0.0f; i < 1.0f * player.damageEffectDuration; i += Time.deltaTime)
         {
-            damageScreen.color = Color.Lerp(Color.clear, damageColor, Mathf.Sin(i * 3f / 0.2f)); // t * 3f omdat radialen.
+            damageScreen.color = Color.Lerp(Color.clear, player.damageColor, Mathf.Sin(i * 3f / player.damageEffectDuration)); // t * 3f omdat radialen.
             yield return null;
         }
+        damageScreen.color = Color.clear;
     }
 
     public void UpdateScoreUI(string text)

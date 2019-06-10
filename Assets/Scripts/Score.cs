@@ -33,9 +33,4 @@ public class Score : MonoBehaviour
             levelUI.UpdateHighScoreUI("HI: " + highScore.ToString());
         }
     }
-
-    //public void UpdateHealthUI(float health) // DEZE WORDT VANAD DE PLAYER AANGEROEPEN
-    //{
-    //    levelUI.UpdateHealthUI("HP: " + health.ToString());
-    //}
 }
