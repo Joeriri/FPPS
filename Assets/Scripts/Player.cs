@@ -8,20 +8,18 @@ public class Player : MonoBehaviour
     public float damageEffectDuration = 1f;
     public Color damageColor = new Color(255, 37, 37, 100);
     private LevelUI levelUI;
-    private AudioSource audioSource;
-    [SerializeField] private AudioClip damageSound;
+    private AudioManager am;
 
     private void Awake()
     {
         levelUI = FindObjectOfType<LevelUI>();
-        audioSource = GetComponent<AudioSource>();
+        am = FindObjectOfType<AudioManager>();
     }
 
     public void Damage(float damagePoints)
     {
         health -= damagePoints;
-        audioSource.clip = damageSound;
-        audioSource.Play();
+        am.Play("PlayerDamage");
         levelUI.DamageEffect();
         levelUI.UpdateHealthUI("HP: " + health.ToString());
 
